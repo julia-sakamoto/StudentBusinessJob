@@ -1,5 +1,6 @@
 package com.example.studentbusinessjob;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -11,8 +12,14 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+    ListView list;
+    ArrayList<JobModel> listData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +36,27 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        setListData();
+
+        Resources res = getResources();
+        list = findViewById(R.id.list);
+        ListAdapter adapter = new ListAdapter(this, listData, res);
+        list.setAdapter(adapter);
+    }
+
+    public void setListData() {
+        listData = new ArrayList<JobModel>();
+
+        for (int i = 0; i < 3; i++) {
+            JobModel model = new JobModel();
+            model.setJobTitle("Job " + i);
+            model.setBusinessOwner("Company " + i);
+            model.setContactEmail(i + "1234@gmail.com");
+            model.setJobDescription("Description Description Description");
+
+            listData.add(model);
+        }
     }
 
     @Override
