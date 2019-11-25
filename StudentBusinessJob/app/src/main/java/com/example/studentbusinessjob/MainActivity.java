@@ -9,6 +9,7 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -57,6 +58,10 @@ public class MainActivity extends AppCompatActivity {
 
             listData.add(model);
         }
+    }
+
+    public void onItemClick(int pos) {
+        Log.i("ITEM CLICKED", pos + " clicked");
     }
 
     @Override

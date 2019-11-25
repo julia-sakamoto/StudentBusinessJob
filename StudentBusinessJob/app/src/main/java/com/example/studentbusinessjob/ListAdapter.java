@@ -67,6 +67,7 @@ public class ListAdapter extends BaseAdapter {
             JobModel temp = (JobModel) data.get(position);
 
             holder.title.setText(temp.getJobTitle());
+            v.setOnClickListener(new OnItemClick(position, activity));
         }
 
         return v;
@@ -79,8 +80,17 @@ class ViewHolder {
 
 class OnItemClick implements View.OnClickListener {
 
+    int position;
+    Activity activity;
+
+    public OnItemClick(int pos, Activity act) {
+        position = pos;
+        activity = act;
+    }
+
     @Override
     public void onClick(View v) {
-
+        MainActivity ma = (MainActivity)activity;
+        ma.onItemClick(position);
     }
 }
